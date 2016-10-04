@@ -28,16 +28,8 @@ import org.dmfs.tasks.model.Model;
  *
  * @author Gabor Keszthelyi
  */
-public class ShareIntentFactory
+public final class ShareIntentFactory
 {
-    private final Context mContext;
-
-
-    public ShareIntentFactory(Context context)
-    {
-        mContext = context;
-    }
-
 
     /**
      * Creates an intent for sharing the description of the whole task in the {@link ContentSet} with other apps.
@@ -49,10 +41,10 @@ public class ShareIntentFactory
      *
      * @return the created intent
      */
-    public Intent createTaskTextShareIntent(ContentSet contentSet, Model model)
+    public Intent createTaskTextShareIntent(ContentSet contentSet, Model model, Context context)
     {
         String title = new TitleText(contentSet).toString();
-        String body = new ShareTaskText(contentSet, model, mContext).toString();
+        String body = new ShareTaskText(contentSet, model, context).toString();
 
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEND);

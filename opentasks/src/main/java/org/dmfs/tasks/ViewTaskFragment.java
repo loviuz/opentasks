@@ -617,7 +617,7 @@ public class ViewTaskFragment extends SupportFragment
 			if (shareItem != null)
 			{
 				ShareActionProvider actionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(shareItem);
-				Intent shareIntent = new ShareIntentFactory(mAppContext).createTaskTextShareIntent(mContentSet, mModel);
+				Intent shareIntent = new ShareIntentFactory().createTaskTextShareIntent(mContentSet, mModel, mAppContext);
 				actionProvider.setShareIntent(shareIntent);
 			}
 		}
