@@ -43,6 +43,7 @@ import java.util.TimeZone;
  [X] checked list item
  [ ] unchecked list item
 
+ Location: <location>
  Start: <start date time> <timezone>
  Due: <due date time> <timezone>
  Completed: <due date time> <timezone>
@@ -102,6 +103,7 @@ public class ShareTaskText extends StringTaskText
                 sb.append(NEW_LINE);
             }
 
+            appendLocation(sb);
             appendTimes(sb);
             appendPriority(sb);
             appendPrivacy(sb);
@@ -163,6 +165,16 @@ public class ShareTaskText extends StringTaskText
         }
 
 
+        private void appendLocation(StringBuilder sb)
+        {
+            String location = TaskFieldAdapters.LOCATION.get(mContentSet);
+            if (!TextUtils.isEmpty(location))
+            {
+                appendProperty(sb, R.string.task_location, location);
+            }
+        }
+
+
         private void appendTimes(StringBuilder sb)
         {
             TimeZoneWrapper timeZoneW = getTimeZoneWrapper(mContentSet);
@@ -183,7 +195,7 @@ public class ShareTaskText extends StringTaskText
         {
             if (time != null)
             {
-                appendProperty(sb, mContext.getString(nameResId), formatTime(time, timeZone));
+                appendProperty(sb, nameResId, formatTime(time, timeZone));
             }
         }
 
@@ -207,7 +219,7 @@ public class ShareTaskText extends StringTaskText
             if (priorityValue != null)
             {
                 String priorityText = mModel.getField(R.id.task_field_priority).getChoices().getTitle(priorityValue);
-                appendProperty(sb, mContext.getString(R.string.task_priority), priorityText);
+                appendProperty(sb, R.string.task_priority, priorityText);
             }
         }
 
@@ -220,7 +232,7 @@ public class ShareTaskText extends StringTaskText
                 String classificationText = mModel.getField(R.id.task_field_classification)
                         .getChoices()
                         .getTitle(classificationValue);
-                appendProperty(sb, mContext.getString(R.string.task_classification), classificationText);
+                appendProperty(sb, R.string.task_classification, classificationText);
             }
         }
 
@@ -231,7 +243,7 @@ public class ShareTaskText extends StringTaskText
             if (statusValue != null && !statusValue.equals(TaskContract.Tasks.STATUS_COMPLETED))
             {
                 String statusText = mModel.getField(R.id.task_field_status).getChoices().getTitle(statusValue);
-                appendProperty(sb, mContext.getString(R.string.task_status), statusText);
+                appendProperty(sb, R.string.task_status, statusText);
             }
         }
 
@@ -253,9 +265,9 @@ public class ShareTaskText extends StringTaskText
         }
 
 
-        private void appendProperty(StringBuilder sb, String name, String value)
+        private void appendProperty(StringBuilder sb, @StringRes int nameResId, String value)
         {
-            sb.append(name).append(": ").append(value).append(NEW_LINE);
+            sb.append(mContext.getString(nameResId)).append(": ").append(value).append(NEW_LINE);
         }
     }
 
