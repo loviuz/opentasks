@@ -45,7 +45,7 @@
     <string name="activity_task_details_pin">Rögzítés</string>
     <string name="activity_task_details_pin_task">Feladat rögzítése</string>
     <string name="opentasks_activity_task_details_send">Küldés</string>
-    <string name="opentasks_activity_task_details_send_task">Feladat küldése</string>
+    <string name="opentasks_activity_task_details_send_task">Küldés</string>
 
     <!-- The title of the button to add a new item to a check list. -->
     <string name="opentasks_checklist_add_item">Elem hozzáadása</string>
