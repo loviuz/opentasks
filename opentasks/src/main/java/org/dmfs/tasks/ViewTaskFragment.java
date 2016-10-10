@@ -597,9 +597,9 @@ public class ViewTaskFragment extends SupportFragment
 			persistTask();
 			return true;
 		}
-		else if (itemId == R.id.opentasks_share_task)
+		else if (itemId == R.id.opentasks_send_task)
 		{
-			setShareMenuIntent();
+			setSendMenuIntent();
 			return false;
 		}
 		else
@@ -609,11 +609,11 @@ public class ViewTaskFragment extends SupportFragment
 	}
 
 
-	private void setShareMenuIntent()
+	private void setSendMenuIntent()
 	{
 		if (mContentSet != null && mModel != null && mToolBar != null && mToolBar.getMenu() != null)
 		{
-			MenuItem shareItem = mToolBar.getMenu().findItem(R.id.opentasks_share_task);
+			MenuItem shareItem = mToolBar.getMenu().findItem(R.id.opentasks_send_task);
 			if (shareItem != null)
 			{
 				ShareActionProvider actionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(shareItem);
